@@ -1,0 +1,12 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+
+# .env 파일
+.env
+
+# VS Code 설정 파일
+.vscode/
+
+# PyCharm 설정 파일
+.idea/

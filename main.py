@@ -1,19 +1,22 @@
-import pyspark
 from pyspark.sql import SparkSession
+import os
+os.environ["PYSPARK_PYTHON"] = "C:/Users/2446_/AppData/Local/Programs/Python/Python39/python.exe"
 
-# SparkSession 생성
-spark = SparkSession.builder \
-    .master("local") \
-    .appName("PySpark Installation Check") \
-    .getOrCreate()
 
-# Spark 세션 버전 확인
-print(spark.version)
+# Spark 세션 시작
+spark = SparkSession.builder.appName('Spark Test').getOrCreate()
 
-# 간단한 데이터프레임 생성
-data = [("Alice", "Brown"), ("Bob", "Smith")]
-df = spark.createDataFrame(data, ["First Name", "Last Name"])
+# Spark 버전 확인
+print(f"Spark version: {spark.version}")
+
+# 간단한 DataFrame 생성
+data = [("John", "Doe", 30), ("Jane", "Doe", 25), ("Mike", "Jordan", 35)]
+columns = ["First Name", "Last Name", "Age"]
+
+df = spark.createDataFrame(data, columns)
+
+# DataFrame 출력
 df.show()
 
-# Spark 세션 종료
+# 세션 종료
 spark.stop()
